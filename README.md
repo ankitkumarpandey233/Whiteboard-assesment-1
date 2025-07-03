@@ -38,7 +38,7 @@ Whiteboard-assesment/
 Copy `server/.env.template` to `server/.env` and fill in the values. Example:
 ```
 PORT=5000
-MONGODB_URI=mongodb+srv://ankit:Ankit%402310@cluster0.1x9ht85.mongodb.net/collaborative-whiteboard?retryWrites=true&w=majority&appName=Cluster0
+MONGODB_URI=
 CLIENT_URL=http://localhost:3000
 NODE_ENV=development
 ```
