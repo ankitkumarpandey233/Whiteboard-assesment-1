@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Socket.io Test</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Socket.io Connection Test</h1>
+    <div id="status">Connecting...</div>
+    <button onclick="joinRoom()">Join Room C762H3</button>
+    <button onclick="sendCursor()">Send Cursor Position</button>
+    
+    <script>
+        const socket = io('http://localhost:5000');
+        
+        socket.on('connect', () => {
+            document.getElementById('status').textContent = 'Connected! Socket ID: ' + socket.id;
+        });
+        
+        socket.on('room-joined', (data) => {
+            console.log('Joined room:', data);
+            alert('Joined room: ' + data.roomCode);
+        });
+        
+        socket.on('error', (error) => {
+            console.error('Socket error:', error);
+        });
+        
+        function joinRoom() {
+            socket.emit('join-room', {
+                roomCode: 'C762H3',
+                userId: 'testUser123'
+            });
+        }
+        
+        function sendCursor() {
+            socket.emit('cursor-move', {
+                x: Math.random() * 800,
+                y: Math.random() * 600
+            });
+        }
+    </script>
+</body>
+</html>
